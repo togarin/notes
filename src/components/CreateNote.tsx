@@ -1,13 +1,44 @@
-import React from "react";
-import { Button, Form, Input } from '../styles/StylesCreateNote';
+import React, { FC, useEffect, useRef, useState } from "react";
+import { observer } from "mobx-react-lite";
 
-const CreateNote = () => {
+import { Form, Input } from "../styles/StylesCreateNote";
+import AddIcon from "@material-ui/icons/Add";
+import { IconButton } from "@material-ui/core";
+
+
+const CreateNote : FC = observer(({ editingNote, onSave }) => {
+  const editingNoteTitle = useRef();
+  const [inputText, setInputText] = useState("");
+
+  useEffect(() => {
+    if (editingNote && editingNoteTitle.current !== editingNote.title) {
+      editingNoteTitle.current = editingNote.title;
+      setInputText(editingNote.title);
+    } else {
+      setInputText("");
+    }
+  }, [editingNote, editingNoteTitle]);
+
   return (
-    <Form >
-      <Input placeholder="Пиши тут" />
-      <Button type="submit">add</Button>
+    <Form>
+      <Input
+        placeholder="Создать"
+        value={inputText}
+        onChange={(e) => {
+          setInputText(e.target.value);
+        }}
+      />
+      <IconButton
+        onClick={(e) => {
+          e.preventDefault();
+          onSave(inputText);
+          setInputText("");
+        }}
+      >
+        <AddIcon />
+      </IconButton>
     </Form>
   );
-};
+});
 
 export default CreateNote;
