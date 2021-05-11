@@ -6,8 +6,8 @@ import AddIcon from "@material-ui/icons/Add";
 import { IconButton } from "@material-ui/core";
 
 
-const CreateNote : FC = observer(({ editingNote, onSave }) => {
-  const editingNoteTitle = useRef();
+const CreateNote : FC<{ editingNote?:Note, onSave:(arg:string)=>any }> = observer(({ editingNote, onSave }) => {
+  const editingNoteTitle = useRef<string>();
   const [inputText, setInputText] = useState("");
 
   useEffect(() => {

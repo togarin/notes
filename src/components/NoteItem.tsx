@@ -14,7 +14,7 @@ const NoteItem: FC<TNoteItem> = observer(({ item, text, onComplete, onDelete, on
       <Ul>
         <Li
           style={{
-            textDecoration: item.completed ? "line-through" : null,
+            textDecoration: item.completed ? "line-through" : "none",
           }}
         >
           <Checkbox

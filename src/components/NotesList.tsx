@@ -6,11 +6,11 @@ import CreateNote from "./CreateNote";
 import NoteItem from "./NoteItem";
 import EmptyNotes from "./EmptyNotes";
 
-const NotesList: FC<TonSave> = observer(() => {
-  const [edititngNoteId, setEditingNoteId] = useState(null);
+const NotesList: FC = observer(() => {
+  const [edititngNoteId, setEditingNoteId] = useState<string>();
 
-  const editingNote: Note | null =
-    edititngNoteId && notesStore.notes.find((n) => n.id === edititngNoteId);
+  const editingNote: Note | undefined =
+    edititngNoteId ? notesStore.notes.find((n) => n.id === edititngNoteId) : undefined;
   
   return (
     <>
@@ -21,7 +21,7 @@ const NotesList: FC<TonSave> = observer(() => {
             notesStore.updateNoteTitle(editingNote.id, title);
           } else notesStore.addNote(title);
 
-          setEditingNoteId(null);
+          setEditingNoteId(undefined);
         }}
       />
       {notesStore.notes.length > 0 ? (

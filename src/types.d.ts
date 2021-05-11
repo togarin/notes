@@ -1,13 +1,17 @@
 
 interface Note {
   id: string;
-  title?: string;
-  completed?: boolean;
+  title: string;
+  completed: boolean;
 }
 
 type TonSave = {
-  onSave?: (title: string) => string;
+  onSave: (title: string) => Note.title;
 };
+
+type TEditingNote = {
+  
+}
 
 type TNoteItem ={
   item: Note,

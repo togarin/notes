@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, IObservableArray } from "mobx";
 
 class NotesStore {
   notes: Array<Note> = [];
@@ -20,11 +20,11 @@ class NotesStore {
   }
 
   removeNote(id: string) {
-    this.notes.replace(this.notes.filter((note) => note.id !== id));
+    (this.notes as IObservableArray).replace(this.notes.filter((note) => note.id !== id));
   }
 
   completeNote(id: string) {
-    this.notes.replace(
+    (this.notes as IObservableArray).replace(
       this.notes.map((note) =>
         note.id === id ? { ...note, completed: !note.completed } : note
       )
@@ -32,7 +32,7 @@ class NotesStore {
   }
 
   updateNoteTitle(id: string, newTitle: string) {
-    this.notes.replace(
+    (this.notes as IObservableArray).replace(
       this.notes.map((note) =>
         note.id === id ? { ...note, title: newTitle } : note
       )
