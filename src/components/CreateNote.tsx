@@ -20,24 +20,27 @@ const CreateNote : FC<{ editingNote?:Note, onSave:(arg:string)=>any }> = observe
   }, [editingNote, editingNoteTitle]);
 
   return (
-    <Form>
-      <Input
-        placeholder="Создать"
-        value={inputText}
-        onChange={(e) => {
-          setInputText(e.target.value);
-        }}
-      />
-      <IconButton
-        onClick={(e) => {
-          e.preventDefault();
-          onSave(inputText);
-          setInputText("");
-        }}
-      >
-        <AddIcon />
-      </IconButton>
-    </Form>
+    <Form
+    onSubmit={(e) => {
+      e.preventDefault();
+      onSave(inputText);
+      setInputText("");
+    }}
+  >
+    <Input
+      placeholder="Создать"
+      value={inputText}
+      onChange={(e) => {
+        setInputText(e.target.value);
+      }}
+    />
+    <IconButton
+      disabled={inputText.length === 0 ? true : false}
+      type="submit"
+    >
+      <AddIcon />
+    </IconButton>
+  </Form>
   );
 });
 

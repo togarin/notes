@@ -5,15 +5,25 @@ import notesStore from "../store/note";
 import CreateNote from "./CreateNote";
 import NoteItem from "./NoteItem";
 import EmptyNotes from "./EmptyNotes";
+import { IconButton } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AuthStore from "../store/auth";
 
 const NotesList: FC = observer(() => {
   const [edititngNoteId, setEditingNoteId] = useState<string>();
 
-  const editingNote: Note | undefined =
-    edititngNoteId ? notesStore.notes.find((n) => n.id === edititngNoteId) : undefined;
-  
+  const editingNote: Note | undefined = edititngNoteId
+    ? notesStore.notes.find((n) => n.id === edititngNoteId)
+    : undefined;
+
   return (
     <>
+      <>
+        <IconButton onClick={AuthStore.signout}>
+          <ExitToAppIcon />
+        </IconButton>
+      </>
+
       <CreateNote
         editingNote={editingNote}
         onSave={(title: string) => {

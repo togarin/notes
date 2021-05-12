@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const section = [
   { title: "home", href: "/" },
+  { title: "signup", href: "/signup" },
   { title: "login", href: "/login" },
   { title: "notes", href: "/notes" },
 ];
