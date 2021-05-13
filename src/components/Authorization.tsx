@@ -1,29 +1,13 @@
-// import React from "react";
-// import { Button, Form, Input } from "../styles/StyleAuthorization";
-
-// const Login = () => {
-//   return (
-//     <>
-//       <Form>
-//         <Input placeholder={"Login"} />
-//         <Input placeholder={"Password"} />
-//         <Button type="submit">Log in</Button>
-//       </Form>
-//     </>
-//   );
-// };
-
-// export default Login;
-import React, { useCallback } from "react";
+import React, {FC, useCallback } from "react";
 import { observer } from "mobx-react-lite";
-import { withRouter, Redirect } from "react-router";
+import { withRouter, Redirect, RouteComponentProps } from "react-router";
 
 import AuthStore from "../store/auth";
 import { Form, Input } from "../styles/StyleAuthorization";
 import { Button } from "@material-ui/core";
 import QueueIcon from "@material-ui/icons/Queue";
 
-const Login =observer( ({ history }) => {
+const Login: FC<RouteComponentProps> =observer( ({ history }) => {
   const handleLogin = useCallback(
     async (e) => {
       e.preventDefault();

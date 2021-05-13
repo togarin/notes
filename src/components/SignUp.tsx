@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
-import { withRouter } from "react-router";
+import React, { FC, useCallback } from "react";
+import { withRouter, RouteComponentProps } from "react-router";
 import { Button, Form, Input } from "../styles/StyleAuthorization";
 import { observer } from "mobx-react-lite";
 import AuthStore from "../store/auth";
 
-const SignUp = observer(({ history }) => {
+const SignUp: FC<RouteComponentProps> = observer(({ history }) => {
   const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();

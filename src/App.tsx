@@ -5,7 +5,7 @@ import GlobalStyle from "./styles/GlobalStyles";
 import { Container } from "./styles/StylesApp";
 
 import NotesList from "./components/NotesList";
-import Authorization from "./components/Authorization.jsx";
+import Authorization from "./components/Authorization";
 import SignUp from "./components/SignUp";
 import Home from "./components/HomePage";
 

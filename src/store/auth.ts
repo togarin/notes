@@ -16,9 +16,7 @@ class AuthStore {
   constructor() {
     makeAutoObservable(this);
   }
-
-  //   currentUser: any; - не должен быть any
-
+  //   currentUser: any; - не должен быть any, должен быть объект который получаю от firebase(?)
   currentUser: any;
   loading?:boolean;
 
