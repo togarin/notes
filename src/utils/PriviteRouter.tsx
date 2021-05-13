@@ -1,8 +1,8 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { FC } from "react";
+import { Route, Redirect, RouteProps } from "react-router-dom";
 import AuthStore from "../store/auth";
 
-const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
+const PrivateRoute: FC<RouteProps> = ({ component: RouteComponent, ...rest }) => {
   return (
     <Route
       {...rest}
