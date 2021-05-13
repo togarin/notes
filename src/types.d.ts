@@ -9,9 +9,9 @@ type TonSave = {
   onSave: (title: string) => Note.title;
 };
 
-type TEditingNote = {
+// type TEditingNote = {
   
-}
+// }
 
 type TNoteItem ={
   item: Note,
@@ -28,3 +28,5 @@ type addNote = ({ Note }) => Note;
 type removeNote = ({ Note }) => Note;
 
 type updateNoteTitle = ({ Note }) => Note;
+
+type TProps = RouteProps & {component:React.ComponentType} 

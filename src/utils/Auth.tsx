@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import firebase from "firebase/app";
 import AuthStore from "../store/auth";
 
-export const AuthContext = React.createContext(null);
+export const AuthContext = React.createContext<firebase.User | undefined>(undefined);
 
 export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {

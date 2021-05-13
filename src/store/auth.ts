@@ -17,20 +17,22 @@ class AuthStore {
     makeAutoObservable(this);
   }
   //   currentUser: any; - не должен быть any, должен быть объект который получаю от firebase(?)
-  currentUser: any;
-  loading?:boolean;
+  currentUser: firebase.User | undefined;
+  loading?: boolean;
 
- public auth() {
+  public auth() {
     this.loading = true;
     app.auth().onAuthStateChanged((user) => {
-      this.currentUser = user;
-      this.loading = false;
+      if (user) {
+        this.currentUser = user;
+        this.loading = false;
+      }
     });
   }
-  public login(email:string, password:string) {
+  public login(email: string, password: string) {
     app.auth().signInWithEmailAndPassword(email, password);
   }
-  public signup(email:string, password:string) {
+  public signup(email: string, password: string) {
     app.auth().createUserWithEmailAndPassword(email, password);
   }
   public signout() {
