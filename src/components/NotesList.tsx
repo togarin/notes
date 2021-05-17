@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { observer } from "mobx-react-lite";
-import notesStore from "../store/note";
+import notesStore, { Note } from "../store/note";
 
 import CreateNote from "./CreateNote";
 import NoteItem from "./NoteItem";
@@ -38,7 +38,6 @@ const NotesList: FC = observer(() => {
         notesStore.notes.map((item) => (
           <NoteItem
             key={item.id}
-            text={item.title}
             item={item}
             onEdit={() => setEditingNoteId(item.id)}
             onComplete={() => notesStore.completeNote(item.id)}

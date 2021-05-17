@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Title } from "../styles/StyleHomePage";
 import { Link } from "react-router-dom";
 
@@ -14,9 +13,7 @@ const Home = () => {
     <>
       <Title> Выполните вход или зарегестрируйтесь</Title>
       {section.map(({ title, href }, index) => (
-          <Button key={index} >
-          <Link to={href}>{title}</Link> 
-          </Button>
+          <Link component={Button} key={index} to={href}>{title}</Link> 
       ))}
     </>
   );

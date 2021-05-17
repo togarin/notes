@@ -1,12 +1,17 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 import { Form, Input } from "../styles/StylesCreateNote";
 import AddIcon from "@material-ui/icons/Add";
 import { IconButton } from "@material-ui/core";
+import { Note } from "../store/note";
 
+interface CreateNoteProps {
+  editingNote?: Note;
+  onSave: (arg: string) => any;
+}
 
-const CreateNote : FC<{ editingNote?:Note, onSave:(arg:string)=>any }> = observer(({ editingNote, onSave }) => {
+const CreateNote: FC<CreateNoteProps> = observer(({ editingNote, onSave }) => {
   const editingNoteTitle = useRef<string>();
   const [inputText, setInputText] = useState("");
 
@@ -21,26 +26,26 @@ const CreateNote : FC<{ editingNote?:Note, onSave:(arg:string)=>any }> = observe
 
   return (
     <Form
-    onSubmit={(e) => {
-      e.preventDefault();
-      onSave(inputText);
-      setInputText("");
-    }}
-  >
-    <Input
-      placeholder="Создать"
-      value={inputText}
-      onChange={(e) => {
-        setInputText(e.target.value);
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSave(inputText);
+        setInputText("");
       }}
-    />
-    <IconButton
-      disabled={inputText.length === 0 ? true : false}
-      type="submit"
     >
-      <AddIcon />
-    </IconButton>
-  </Form>
+      <Input
+        placeholder="Создать"
+        value={inputText}
+        onChange={(e) => {
+          setInputText(e.target.value);
+        }}
+      />
+      <IconButton
+        disabled={inputText.length === 0 ? true : false}
+        type="submit"
+      >
+        <AddIcon />
+      </IconButton>
+    </Form>
   );
 });
 

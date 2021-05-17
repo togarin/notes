@@ -13,30 +13,36 @@ const app = firebase.initializeApp({
 });
 
 class AuthStore {
+  currentUser: firebase.User | null = null;
+  loading?: boolean;
+
   constructor() {
     makeAutoObservable(this);
   }
-  //   currentUser: any; - не должен быть any, должен быть объект который получаю от firebase(?)
-  currentUser: firebase.User | undefined;
-  loading?: boolean;
 
-  public auth() {
-    this.loading = true;
+  auth() {
+    this.setLoading(true);
     app.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.currentUser = user;
-        this.loading = false;
-      }
+      this.setUser(user);
+      this.setLoading(false);
     });
   }
-  public login(email: string, password: string) {
-    app.auth().signInWithEmailAndPassword(email, password);
+  async login(email: string, password: string) {
+    return app.auth().signInWithEmailAndPassword(email, password);
   }
-  public signup(email: string, password: string) {
-    app.auth().createUserWithEmailAndPassword(email, password);
+  async signup(email: string, password: string) {
+    return app.auth().createUserWithEmailAndPassword(email, password);
   }
-  public signout() {
-    app.auth().signOut();
+  async signout() {
+    return app.auth().signOut();
+  }
+
+  setLoading(v: boolean) {
+    this.loading = v;
+  }
+
+  setUser(v: firebase.User | null) {
+    this.currentUser = v;
   }
 }
 

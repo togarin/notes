@@ -1,23 +1,19 @@
-import React, { FC, useCallback } from "react";
-import { withRouter, RouteComponentProps } from "react-router";
+import { FC, useCallback } from "react";
+import { RouteComponentProps } from "react-router";
 import { Button, Form, Input } from "../styles/StyleAuthorization";
 import { observer } from "mobx-react-lite";
 import AuthStore from "../store/auth";
 
-const SignUp: FC<RouteComponentProps> = observer(({ history }) => {
-  const handleSignUp = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        AuthStore.signup(email.value, password.value);
-        history.push("/");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
+const SignUp: FC<RouteComponentProps> = observer(() => {
+  const handleSignUp = useCallback(async (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    try {
+      AuthStore.signup(email.value, password.value);
+    } catch (error) {
+      alert(error);
+    }
+  }, []);
 
   return (
     <>
@@ -30,4 +26,4 @@ const SignUp: FC<RouteComponentProps> = observer(({ history }) => {
   );
 });
 
-export default withRouter(SignUp);
+export default SignUp;
